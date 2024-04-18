@@ -6,13 +6,13 @@ function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   return (
     <>
-      <nav className="bg-gray-200 drop-shadow-lg">
-        <div className="container mx-auto flex items-center justify-between h-16 px-4 ">
+      <nav className="bg-gray-200 drop-shadow-lg sticky top-0 px-4">
+        <div className="container mx-auto flex items-center justify-between h-16 ">
           <Link
             to="/"
-            className="flex-shrink-0 font-bold tracking-wider text-2xl"
+            className="flex-shrink-0 font-bold tracking-wider text-2xl font-serif italic text-shadow text-shadow-gray-400 text-shadow-x-3 text-shadow-y-4"
           >
-            LOGO
+            TextUtils
           </Link>
           <div className="hidden md:flex">
             <Menu />
