@@ -6,7 +6,7 @@ function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   return (
     <>
-      <nav className="bg-gray-200 drop-shadow-lg sticky top-0 px-4">
+      <nav className="bg-gray-200 drop-shadow-lg sticky top-0 px-4 z-20">
         <div className="container mx-auto flex items-center justify-between h-16 ">
           <Link
             to="/"

@@ -72,7 +72,7 @@ const Home = () => {
             placeholder="Enter your text here"
             id="textBox"
             name="textBox"
-            rows="12"
+            rows="8"
             value={text}
             onChange={handleChange}
             cols="50"
@@ -120,7 +120,7 @@ const Home = () => {
               characters
             </h2>
           </div>
-          <ChooseLanguage />
+          {/* <ChooseLanguage /> */}
         </div>
       </div>
     </>
