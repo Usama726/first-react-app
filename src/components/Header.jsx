@@ -10,7 +10,7 @@ function Header() {
         <div className="container mx-auto flex items-center justify-between h-16 ">
           <Link
             to="/"
-            className="flex-shrink-0 font-bold tracking-wider text-2xl font-serif italic text-shadow text-shadow-gray-400 text-shadow-x-3 text-shadow-y-4"
+            className="animate-pulse flex-shrink-0 font-bold tracking-wider text-2xl font-serif italic text-shadow text-shadow-gray-400 text-shadow-x-3 text-shadow-y-4"
           >
             TextUtils
           </Link>

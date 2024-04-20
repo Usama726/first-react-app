@@ -3,7 +3,7 @@ const About = () => {
   return (
     <>
       <div className="mt-8">
-        <Banner bannerTitle="About Page" />
+        <Banner bannerTitle="About App" />
       </div>
     </>
   );
