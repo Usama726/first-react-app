@@ -37,7 +37,9 @@ function Header() {
             </svg>
           </button>
         </div>
-        {showMobileMenu && <Menu />}
+        {showMobileMenu && (
+          <Menu onTabChange={() => setShowMobileMenu(!showMobileMenu)} />
+        )}
       </nav>
     </>
   );

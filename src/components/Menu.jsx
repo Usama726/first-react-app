@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-const Menu = () => {
-  const [selectedTab, setSelectedTab] = useState(0); // Initially select the first tab
-
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+const Menu = ({ onTabChange }) => {
+  const location = useLocation();
   const tabsArray = [
     {
       tabName: "Home",
@@ -17,22 +15,20 @@ const Menu = () => {
       tabName: "Contact",
       tabPath: "/contact",
     },
-  ]; // Your array of tab names
-
-  const handleTabClick = (index) => {
-    setSelectedTab(index);
-  };
+  ];
   return (
     <nav>
-      <ul className="flex flex-col items-center md:flex-row justify-center gap-3">
+      <ul className="flex flex-col items-center md:flex-row justify-center gap-4">
         {tabsArray.map((tab, index) => (
           <Link
             className={`${
-              selectedTab === index ? "border-b-4 border-gray-600" : "none"
-            }  hover:scale-[1.1]`}
+              location.pathname === tab.tabPath
+                ? "border-b-2 border-gray-600"
+                : "none"
+            }  hover:scale-[1.1] transition ease-in delay-150 duration-300`}
             to={tab.tabPath}
             key={index}
-            onClick={() => handleTabClick(index)}
+            onClick={onTabChange}
           >
             {tab.tabName}
           </Link>

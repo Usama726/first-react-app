@@ -1,56 +1,84 @@
 import Banner from "../components/Banner";
-import ChooseLanguage from "../components/ChooseLanguages";
+// import ChooseLanguage from "../components/ChooseLanguages";
 import TheButton from "../components/TheButton";
 import React, { useState } from "react";
 const Home = () => {
   const [text, setText] = useState("");
-  const [heading, setHeading] = useState("Enter text to analyse");
-  const [error, setError] = useState("Please enter text to analyse");
+  const [heading, setHeading] = useState("Enter text to analyze");
+  const [alert, setAlert] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState("Please enter text to analyze");
 
   const handleChange = (event) => {
     setText(event.target.value);
-    setHeading("Enter text to analyse");
+    setHeading("Enter text to analyze");
   };
   const clearText = () => {
     setText("");
-    setError("Please enter text to analyse ");
+    setShowAlert(true);
+    setAlert("Text is cleared");
+    setTimeout(() => {
+      setAlert("");
+      setShowAlert(false);
+    }, 2000);
+    setError("Please enter text to analyze ");
   };
   let newText;
   const ConvertToUpperCase = () => {
     if (text.length) {
       newText = text.toUpperCase();
       setText(newText);
-      setHeading("Your converted text to UpperCase is ");
+      setShowAlert(true);
+      setAlert("Your text is converted into upperCase");
+      setTimeout(() => {
+        setAlert("");
+        setShowAlert(false);
+      }, 2000);
     } else {
-      setError("Please enter text to analyse ");
+      setError("Please enter text to analyze ");
     }
   };
   const ConvertToLowerCase = () => {
     if (text.length) {
       newText = text.toLowerCase();
       setText(newText);
-      setHeading("Your converted text to LowerCase is ");
+      setShowAlert(true);
+      setAlert("Your text is converted into lowerCase ");
+      setTimeout(() => {
+        setAlert("");
+        setShowAlert(false);
+      }, 2000);
     } else {
-      setError("Please enter text to analyse ");
+      setError("Please enter text to analyze ");
     }
   };
   const copyText = () => {
     if (text.length) {
       newText = document.getElementById("textBox");
       newText.select();
+      setShowAlert(true);
       navigator.clipboard.writeText(newText.value);
-      setHeading("Your text is copied to clicpboard ");
+      setAlert("Your text is copied to clicpboard ");
+      setTimeout(() => {
+        setAlert("");
+        setShowAlert(false);
+      }, 2000);
     } else {
-      setError("Please enter text to analyse ");
+      setError("Please enter text to analyze ");
     }
   };
   const removeExtraSpaces = () => {
     if (text.length) {
       newText = text.split(/[ ]+/);
       setText(newText.join(" "));
-      setHeading("Your text after removing extra spaces is");
+      setShowAlert(true);
+      setAlert("Extra spaces are removed");
+      setTimeout(() => {
+        setAlert("");
+        setShowAlert(false);
+      }, 2000);
     } else {
-      setError("Please enter text to analyse ");
+      setError("Please enter text to analyze ");
     }
   };
   return (
@@ -60,15 +88,22 @@ const Home = () => {
           <Banner bannerTitle="Welcome to text-utils" />
         </div>
         <div className="container mx-auto">
-          <h1
-            className={`${
-              text.length ? "text-gray-800" : "text-red-600"
-            } text-xl md:text-3xl font-medium  mt-12 mb-2`}
-          >
-            {!text.length ? error : heading}
-          </h1>
+          <div className="flex items-center justify-between mt-6 mb-2">
+            <h1
+              className={`${
+                text.length ? "text-gray-800" : "text-red-600"
+              } text-base sm:text-lg md:text-2xl font-medium py-3`}
+            >
+              {!text.length ? error : heading}
+            </h1>
+            {showAlert && (
+              <h1 className="rounded-lg px-2 py-3 bg-gray-100 border border-gray-400 text-black text-xs sm:text-sm md:text-base font-normal">
+                {alert}
+              </h1>
+            )}
+          </div>
           <textarea
-            className="w-full border-2 border-gray-400 focus:ring-gray-400 focus:outline-gray-400 focus:border-gray-400 rounded-lg p-2"
+            className="w-full border border-gray-400 focus:ring-gray-400 focus:outline-gray-400 focus:border-gray-400 rounded-lg p-2"
             placeholder="Enter your text here"
             id="textBox"
             name="textBox"
@@ -77,26 +112,35 @@ const Home = () => {
             onChange={handleChange}
             cols="50"
           ></textarea>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <TheButton
               type="button"
+              disable={!text.length}
               background="bg-red-600 hover:bg-red-500 text-white"
               buttonText="Clear Text"
               onClick={clearText}
             />
             <TheButton
               type="button"
+              disable={!text.length}
+              buttonText="Copy"
+              onClick={copyText}
+            />
+            <TheButton
+              type="button"
+              disable={!text.length}
               buttonText="UpperCase"
               onClick={ConvertToUpperCase}
             />
             <TheButton
               type="button"
+              disable={!text.length}
               buttonText="LowerCase"
               onClick={ConvertToLowerCase}
             />
-            <TheButton type="button" buttonText="Copy" onClick={copyText} />
             <TheButton
               type="button"
+              disable={!text.length}
               buttonText="Remove Extra Spaces"
               onClick={removeExtraSpaces}
             />
@@ -111,7 +155,11 @@ const Home = () => {
                 } text-xl font-bold `}
               >
                 {" "}
-                {text.split(" ").length}{" "}
+                {
+                  text.split(" ").filter((element) => {
+                    return element.length !== 0;
+                  }).length
+                }{" "}
                 <span className="text-sm sm:text-lg font-normal">
                   words and{" "}
                 </span>
