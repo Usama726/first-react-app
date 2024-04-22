@@ -53,10 +53,8 @@ const Home = () => {
   };
   const copyText = () => {
     if (text.length) {
-      newText = document.getElementById("textBox");
-      newText.select();
       setShowAlert(true);
-      navigator.clipboard.writeText(newText.value);
+      navigator.clipboard.writeText(text);
       setAlert("Your text is copied to clicpboard ");
       setTimeout(() => {
         setAlert("");
@@ -144,28 +142,32 @@ const Home = () => {
               onClick={removeExtraSpaces}
             />
           </div>
-          <div className="mt-4  bg-gray-100 shadow-lg rounded-lg p-2">
-            <h2 className="text-sm sm:text-lg font-normal ">
-              {" "}
-              Entered text contains:{" "}
-              <span
-                className={`${
-                  text.length ? "inline-block" : "hidden"
-                } text-xl font-bold `}
-              >
-                {" "}
-                {
-                  text.split(" ").filter((element) => {
-                    return element.length !== 0;
-                  }).length
-                }{" "}
-                <span className="text-sm sm:text-lg font-normal">
-                  words and{" "}
-                </span>
-              </span>{" "}
-              <span className="text-xl font-bold ">{text.length} </span>
-              characters
-            </h2>
+          <div>
+            {text.length !== 0 && (
+              <div className="mt-4  bg-gray-100 shadow-lg rounded-lg p-2">
+                <h2 className="text-sm sm:text-lg font-normal ">
+                  {" "}
+                  Entered text contains:{" "}
+                  <span
+                    className={`${
+                      text.length ? "inline-block" : "hidden"
+                    } text-xl font-bold `}
+                  >
+                    {" "}
+                    {
+                      text.split(" ").filter((element) => {
+                        return element.length !== 0;
+                      }).length
+                    }{" "}
+                    <span className="text-sm sm:text-lg font-normal">
+                      words and{" "}
+                    </span>
+                  </span>{" "}
+                  <span className="text-xl font-bold ">{text.length} </span>
+                  characters
+                </h2>
+              </div>
+            )}
           </div>
           {/* <ChooseLanguage /> */}
         </div>
