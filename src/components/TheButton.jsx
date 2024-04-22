@@ -1,8 +1,6 @@
 import React from "react";
 
 const TheButton = (props) => {
-  // const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
   return (
     <div>
       <button
