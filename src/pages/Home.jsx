@@ -8,7 +8,6 @@ const Home = () => {
   const [alert, setAlert] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState("Please enter text to analyze");
-
   const handleChange = (event) => {
     setText(event.target.value);
     setHeading("Enter text to analyze");
@@ -115,32 +114,32 @@ const Home = () => {
           <div className="flex items-center gap-3 flex-wrap">
             <TheButton
               type="button"
-              disable={!text.length}
+              text={text}
               background="bg-red-600 hover:bg-red-500 text-white"
               buttonText="Clear Text"
               onClick={clearText}
             />
             <TheButton
               type="button"
-              disable={!text.length}
+              text={text}
               buttonText="Copy"
               onClick={copyText}
             />
             <TheButton
               type="button"
-              disable={!text.length}
+              text={text}
               buttonText="UpperCase"
               onClick={ConvertToUpperCase}
             />
             <TheButton
               type="button"
-              disable={!text.length}
+              text={text}
               buttonText="LowerCase"
               onClick={ConvertToLowerCase}
             />
             <TheButton
               type="button"
-              disable={!text.length}
+              text={text}
               buttonText="Remove Extra Spaces"
               onClick={removeExtraSpaces}
             />
