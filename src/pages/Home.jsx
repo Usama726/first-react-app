@@ -97,7 +97,7 @@ const Home = () => {
               {!text.length ? error : heading}
             </h1>
             {showAlert && (
-              <h1 className="rounded-lg px-2 py-3 bg-gray-100 border border-gray-400 text-black text-xs sm:text-sm md:text-base font-normal">
+              <h1 className="rounded-lg px-3 py-2 bg-gray-100 border border-gray-400 text-black text-xs sm:text-sm md:text-base font-normal">
                 {alert}
               </h1>
             )}
